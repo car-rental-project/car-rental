@@ -1,29 +1,29 @@
 #include "DaneKlienta.hpp"
 
 string DaneKlienta::getPesel()
-	{
-		return pesel;
-	}
+{
+	return pesel;
+}
 string DaneKlienta::getNazwisko()
-	{
-		return nazwisko;
-	}
+{
+	return nazwisko;
+}
 string DaneKlienta::getImie()
-	{
-		return imie;
-	}
+{
+	return imie;
+}
 void DaneKlienta::setPesel(string p)
-	{
-		pesel = p;
-	}
+{
+	pesel = p;
+}
 void DaneKlienta::setNazwisko(string n)
-	{
-		nazwisko = n;
-	}
+{
+	nazwisko = n;
+}
 void DaneKlienta::setImie(string i)
-	{
-		imie = i;
-	}
+{
+	imie = i;
+}
 
 void DaneKlienta::edytujDane()
 {
@@ -67,5 +67,5 @@ void DaneKlienta::wyswietlDane()
 {
 	cout << "Imie: " << imie << endl;
 	cout << "Nazwisko:" << nazwisko << endl;
-	cout << "Nr PESEL: " << pesel << endl << endl;
+	cout << "Nr PESEL: " << pesel << endl;
 }

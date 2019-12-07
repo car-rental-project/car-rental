@@ -1,4 +1,4 @@
-#ifndef DANEKLIENTA
+﻿#ifndef DANEKLIENTA
 #define DANEKLIENTA
 #include <iostream>
 #include <string>
@@ -13,7 +13,7 @@ class DaneKlienta
 	string pesel;
 public:
 	DaneKlienta() = default;
-	DaneKlienta(string i, string n, string p):imie(i), nazwisko(n), pesel(p){};
+	DaneKlienta(string i, string n, string p) :imie(i), nazwisko(n), pesel(p) {};
 	string getPesel();
 	string getNazwisko();
 	string getImie();
@@ -27,4 +27,3 @@ public:
 
 
 #endif
-
