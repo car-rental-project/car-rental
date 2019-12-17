@@ -30,7 +30,7 @@ bool removeLine(std::string fileDirectory, std::string fileName, std::string toD
 			}
 			else {
 				if (tmpString != toDelete) {
-					tmp << tmpString;
+				tmp << tmpString;
 				}
 			}
 		}
@@ -266,6 +266,7 @@ void ZarzadzanieBazaPracownikow::dodajPracownika() {
 		directory.insert(directory.size(), login);
 		if (exists(directory)) {
 			std::cout << "login zajety" << std::endl;
+			directory.erase(directory.size() - login.size());
 		}
 		else ok = false;
 	}
@@ -348,4 +349,3 @@ void ZarzadzanieBazaPracownikow::usunPracownika() {
 //	else std::cout << "usuniecie pracownika niemozliwe" << std::endl;
 //	LOGINY.close();
 }
-
