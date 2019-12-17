@@ -23,15 +23,15 @@ bool removeLine(std::string fileDirectory, std::string fileName, std::string toD
 	if (tmp.good() && file.good()) {
 		while (file.eof() == 0) {
 			getline(file, tmpString);
-			//if (file.eof() != 0) {
+			if (file.eof() == 0) {
 				if (tmpString != toDelete) {
 					tmp << tmpString << std::endl;
 				}
-			//}
-			//else {
-		//		if (tmpString != toDelete) {
-		//			tmp << tmpString;
-		//		}
+			}
+			else {
+				if (tmpString != toDelete) {
+					tmp << tmpString;
+				}
 			}
 		}
 		file.close();
