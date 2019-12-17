@@ -348,3 +348,4 @@ void ZarzadzanieBazaPracownikow::usunPracownika() {
 //	else std::cout << "usuniecie pracownika niemozliwe" << std::endl;
 //	LOGINY.close();
 }
+
