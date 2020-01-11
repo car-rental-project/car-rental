@@ -1,13 +1,22 @@
 #ifndef UZYTKOWNIK
 #define UZYTKOWNIK
 
+#include <vector>
 #include "DaneKlienta.hpp"
+#include "MenuUzytkownika.hpp"
+#include "DostepDoPojazdow.hpp"
 
 class Uzytkownik{
 private:
 	DaneKlienta daneKlienta;
+	DostepDoPojazdow dostepDoPojazdow;
+	MenuUzytkownika menuUzytkownika;
+
+	friend class MenuUzytkownika;
+	
 	int kwota;
 	int *hisWypozyczen = nullptr;
+	std::vector <Wypozyczenie> wypozyczenie;
 
 public:
 	Uzytkownik() = default;

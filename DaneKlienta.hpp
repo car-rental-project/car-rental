@@ -8,6 +8,7 @@ using namespace std;
 
 class DaneKlienta
 {
+	string login;
 	string imie;
 	string nazwisko;
 	string pesel;
@@ -22,6 +23,7 @@ public:
 	void setImie(string i);
 	void wyswietlDane();
 	void edytujDane();
+	void edytujDaneWBazie();
 	//void pobierzDane(); ---> do zrobienia po ogarniêciu bazy
 };
 

@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include "Wypozyczenie.hpp"
+
 using namespace std;
 
 class Pojazd {
@@ -17,6 +20,7 @@ private:
 	float moc;
 	char klasa;
 	long unsigned int przebieg;
+	std::vector <Wypozyczenie> wypozyczenie;
 public:
 	string getRejestracja();
 	string getMarka();
