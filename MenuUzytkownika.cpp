@@ -51,6 +51,9 @@ void MenuUzytkownika::menuUzytkownik(Uzytkownik &u) {
 	case(5):
 		u.getKwota();
 		break;
+	default:
+		std::cout << "blad" << std::endl << "sproboj ponownie" << std::endl;
 
+		break;
 	}
 }

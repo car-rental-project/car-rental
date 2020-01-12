@@ -1,5 +1,5 @@
 #ifndef ZBW_HPP
-#define ZFB_HOO
+#define ZBW_HPP
 
 class Zarz¹dzanieBazaWypozyczen {
 	void przegladajBazeWypozyczen();
