@@ -11,6 +11,7 @@ public:
 	void edytujBazePojazdow(string rejestracja,int opcja);
 	Pojazd *znajdzPojazd(string rejestracja);
 	void przegladajBazePojazdow();
+	void wypiszDanyPojazd(Pojazd * pojazd);
 	
 }
 #endif

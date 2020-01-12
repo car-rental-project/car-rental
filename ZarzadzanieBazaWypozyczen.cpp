@@ -1,6 +1,7 @@
 #include "ZarzadzanieBazaWypozyczen.hpp"
 #include <iostream>
 #include <cstring>
+#include <cstdio>
 #include <fstream>
 
 void ZarzadzanieBazaWypozyczen::przegladajBazeWypozyczen() {
@@ -45,6 +46,9 @@ void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
 	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje";
 	std::string dir = ".\\BazaDanych\\Wypozyczenia";
 
+	string carsDirectory = ".\\BazaDanych\\Pojazdy\\";
+	string globalRej;
+	fstream f;
 	std::string rejestracja;
 	std::string imie;
 	std::string	nazwisko;
@@ -61,6 +65,7 @@ void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
 
 			cout << "Podaj rejestracje: ";
 			cin >> rejestracja;
+			globalRej = rejestracja;
 			cout << endl;
 			cout << "Podaj Imie nabywcy: ";
 			cin >> imie;
@@ -83,7 +88,31 @@ void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
 		}
 		file.close();
 	}
+	
+	//dopisywanie do pliku Autka aktualnego wypozyczenia
+	//tworzy sie wowczas w pliku autka
+	// historua wypozyczen
+	string fullPath = carsDirectory.append(globalRej);
+	f.open(fullpath, ios::out | ios::app);
+	if (f.good()) {
+		f << "---Wypozyczenie--- \n";
+		f << dataPoczatkowa << "\n";
+		f << dataKoncowa << "\n";
+		f << imie << "\n";
+		f << nazwisko << "\n";
+	}
+	f.close();
+
 }
-void ZarzadzanieBazaWypozyczen::usunWypozyczenie() {
+void ZarzadzanieBazaWypozyczen::usunWypozyczenie(string fileName) {
+	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje\\";
+	string path = wyp.append(fileName);
+
+	if (remove(path) == 0) {
+		cout << "Usuniêto wypozyczenie";
+	}
+	else {
+		cout << "Cos poszlo nie tak. Upewnij sie, ze pojazd nie zostal juz zwrocony" << endl;
+	}
 
 }
