@@ -12,7 +12,7 @@ const string plikZRejestracjami;
 void ZarzadzanieBazaPojazdow::dodajPojazd() {
 	std::string rejestracja;
 	fstream plik;
-	fstream wszystkiePojazdy:
+	fstream wszystkiePojazdy :
 	string directory = ".\\BazaDanych\\Pojazdy\\";
 
 	string marka;
@@ -45,7 +45,7 @@ void ZarzadzanieBazaPojazdow::dodajPojazd() {
 	std::cout << "podaj ilosc drzwi" << std::endl;
 	std::cin >> drzwi;
 	plik.open(nazwaPliku, ios::out | ios::app);
-	if (plik.good() == true){
+	if (plik.good() == true) {
 		plik << marka << "\n"
 			<< model << "\n"
 			<< klasa << "\n"
@@ -63,7 +63,7 @@ void ZarzadzanieBazaPojazdow::dodajPojazd() {
 	wszystkiePojazdy.close();
 }
 
-void ZarzadzanieBazaPojazdow::dodajPojazd(Pojazd * pojazd) {
+void ZarzadzanieBazaPojazdow::wypiszDanyPojazd(Pojazd * pojazd) {
 	string linia;
 	fstream plik;
 	string directory = ".\\BazaDanych\\Pojazdy\\";
@@ -84,7 +84,7 @@ void ZarzadzanieBazaPojazdow::dodajPojazd(Pojazd * pojazd) {
 			<< pojazd->getLiczbaDrzwi();
 		plik.close();
 	}
-	cout << "Pojazd o rejestracji [" << pojazd->getRejestracja() << "]" <<" dodano" <<endl;
+	cout << "Pojazd o rejestracji [" << pojazd->getRejestracja() << "]" << " dodano" << endl;
 	system("PAUSE");
 }
 void ZarzadzanieBazaPojazdow::usunPojazd(string rejestracja) {
@@ -126,7 +126,7 @@ Pojazd* ZarzadzanieBazaPojazdow::znajdzPojazd(string rejestracja) {
 	dataFile.open(nazwaPliku, ios::in);
 	if (dataFile.good()) {
 		while (!dataFile.eof()) {
-		
+
 			string rejestracja;
 			string marka;
 			string model;
@@ -177,31 +177,78 @@ Pojazd* ZarzadzanieBazaPojazdow::znajdzPojazd(string rejestracja) {
 		dataFile.close();
 	}
 	return pojazd;
+}
 
+void ZarzadzanieBazaPojazdow::przegladajBazePojazdow() {
+	list<string> vectorRejestracji;
+	fstream plik;
+	string tempRej;
+	plik.open(plikZRejestracjami, ios::in);
+	if (plik.good()) {
+		while (!plik.eof()) {
+			plik >> tempRej;
 
-	void ZarzadzanieBazaPojazdow : wypisz pojazdy() {
-		vector<int> vectorRejestracji;
-		string tempRej;
-		fstream plik;
-		plik.open(plikZRejestracjami, ios::in);
-		if (plik.good()) {
-			while (!plik.eof()) {
-				plik >> tempRej;
-				vectorRejestracji.push_back(tempRej);
+			vectorRejestracji.push_back(tempRej);
+		}
+	}
+
+	string directory = ".\\BazaDanych\\Pojazdy\\";
+	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje\\";
+	string nazwaPliku;
+	string nazwaWypozyczenia;
+	string daneWypozyczenia;
+	string rejestracja;
+	string marka;
+	string model;
+	string klasa;
+	string moc;
+	string pojemnoscB;
+	string przebieg;
+	string pojemnoscS;
+	string drzwi;
+
+	fstream f;
+	fstream wypozStream;
+
+	for (std::list<std::string>::const_iterator i = vectorRejestracji.begin(); i != vectorRejestracji.end(); ++i) {
+
+		nazwaPliku = directory.append(*i);
+		nazwaWypozyczenia = wyp.append(*i);
+		f.open(nazwaPliku, ios::in);
+		if (f.good()) {
+			while (!f.eof()) {
+				rejestracja = *i;
+				f >> marka;
+				f >> model;
+				f >> klasa;
+				f >> moc;
+				f >> pojemnoscB;
+				f >> przebieg;
+				f >> pojemnoscS;
+				f >> drzwi;
+				cout << "\n-------------------\n";
+				cout << "Pojazd o rejestracji: " << rejestracja << endl;
+				cout << "Marka: " << marka << endl;
+				cout << "Model: " << model << endl;
+				cout << "Klasa: " << klasa << endl;
+				cout << "Moc: " << moc << endl;
+				cout << "Pojemnosc bagaznika: " << pojemnoscB << endl;
+				cout << "Pojemnosc silnika: " << pojemnoscS << endl;
+				cout << "Przebieg: " << przebieg << endl;
+				cout << "Liczba drzwi: " << drzwi << endl;
+				f.close();
 			}
 		}
-
-		std::string rejestracja;
-		fstream plik;
-		string directory = ".\\BazaDanych\\Pojazdy\\";
-
-		string marka;
-		string model;
-		string klasa;
-		string moc;
-		string pojemnoscB;
-		string przebieg;
-		string pojemnoscS;
-		string drzwi;
+		cout << "Historia wypozyczen: " << endl;
+		wypozStream.open(nazwaWypozyczenia, ios::in);
+		if (wypozStream.good()) {
+			while (!wypozStream.eof()) {
+				wypozStream >> daneWypozyczenia;
+				cout << daneWypozyczenia << " \n";
+			}
+		}
+		wypozStream.close();
 	}
+
+	cout << "------------";
 }
