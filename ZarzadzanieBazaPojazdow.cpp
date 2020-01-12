@@ -1,13 +1,18 @@
 #include <iostream>
 #include <cstdio>
+#include <vector>
 #include "ZarzadzanieBazaPojazdow.hpp"
 #include "Pojazd.hpp"
 #include "Data.hpp"
+
 using namespace std;
+
+const string plikZRejestracjami;
 
 void ZarzadzanieBazaPojazdow::dodajPojazd() {
 	std::string rejestracja;
 	fstream plik;
+	fstream wszystkiePojazdy:
 	string directory = ".\\BazaDanych\\Pojazdy\\";
 
 	string marka;
@@ -18,6 +23,7 @@ void ZarzadzanieBazaPojazdow::dodajPojazd() {
 	string przebieg;
 	string pojemnoscS;
 	string drzwi;
+
 
 	std::cout << "podaj rejestracje " << std::endl;
 	std::cin >> rejestracja;
@@ -39,8 +45,7 @@ void ZarzadzanieBazaPojazdow::dodajPojazd() {
 	std::cout << "podaj ilosc drzwi" << std::endl;
 	std::cin >> drzwi;
 	plik.open(nazwaPliku, ios::out | ios::app);
-	if (plik.good() == true)
-	{
+	if (plik.good() == true){
 		plik << marka << "\n"
 			<< model << "\n"
 			<< klasa << "\n"
@@ -49,8 +54,13 @@ void ZarzadzanieBazaPojazdow::dodajPojazd() {
 			<< przebieg << "\n"
 			<< pojemnoscS << "\n"
 			<< drzwi << "\n";
-		plik.close();
 	}
+	plik.close();
+	wszystkiePojazdy.open(plikZRejestracjami, ios::out | ios::app);
+	if (wszystkiePojazdy.good()) {
+		wszystkiePojazdy << rejestracja << "\n";
+	}
+	wszystkiePojazdy.close();
 }
 
 void ZarzadzanieBazaPojazdow::dodajPojazd(Pojazd * pojazd) {
@@ -168,4 +178,30 @@ Pojazd* ZarzadzanieBazaPojazdow::znajdzPojazd(string rejestracja) {
 	}
 	return pojazd;
 
+
+	void ZarzadzanieBazaPojazdow : wypisz pojazdy() {
+		vector<int> vectorRejestracji;
+		string tempRej;
+		fstream plik;
+		plik.open(plikZRejestracjami, ios::in);
+		if (plik.good()) {
+			while (!plik.eof()) {
+				plik >> tempRej;
+				vectorRejestracji.push_back(tempRej);
+			}
+		}
+
+		std::string rejestracja;
+		fstream plik;
+		string directory = ".\\BazaDanych\\Pojazdy\\";
+
+		string marka;
+		string model;
+		string klasa;
+		string moc;
+		string pojemnoscB;
+		string przebieg;
+		string pojemnoscS;
+		string drzwi;
+	}
 }
