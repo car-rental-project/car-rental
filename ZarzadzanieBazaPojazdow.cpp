@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <vector>
+#include <string>
 #include "ZarzadzanieBazaPojazdow.hpp"
 #include "Pojazd.hpp"
 #include "Data.hpp"
@@ -10,9 +11,9 @@ using namespace std;
 const string plikZRejestracjami;
 
 void ZarzadzanieBazaPojazdow::dodajPojazd() {
-	std::string rejestracja;
+	string rejestracja;
 	fstream plik;
-	fstream wszystkiePojazdy :
+	fstream wszystkiePojazdy;
 	string directory = ".\\BazaDanych\\Pojazdy\\";
 
 	string marka;

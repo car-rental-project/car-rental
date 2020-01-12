@@ -13,7 +13,7 @@ void ZarzadzanieBazaWypozyczen::przegladajBazeWypozyczen() {
 	data koncowa
 	kwota
 	*/
-	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje";
+	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje\\";
 	std::string dir = ".\\BazaDanych\\Wypozyczenia"
 		std::fstream file;
 	std::fstream wypozycznie;
@@ -43,7 +43,7 @@ void ZarzadzanieBazaWypozyczen::przegladajBazeWypozyczen() {
 	wypozycznie.close();
 }
 void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
-	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje";
+	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje\\";
 	std::string dir = ".\\BazaDanych\\Wypozyczenia";
 
 	string carsDirectory = ".\\BazaDanych\\Pojazdy\\";
