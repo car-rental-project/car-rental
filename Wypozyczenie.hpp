@@ -10,7 +10,8 @@ private:
 	Data dataKoncowa;
 	bool aktualne;
 	Pojazd* pojazd;
-	Uzytkownik* uzytkownik;
+	std::string rejestracja;
+	//Uzytkownik* uzytkownik;
 public:
 	bool wypozyczAuto(Pojazd *pojazd, Uzytkownik* u,Data datak, Data dataP);
 	void zwroc();
