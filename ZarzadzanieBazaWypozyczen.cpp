@@ -1,9 +1,10 @@
 #include "ZarzadzanieBazaWypozyczen.hpp"
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <cstdio>
 #include <fstream>
-
+using namespace std;
 void ZarzadzanieBazaWypozyczen::przegladajBazeWypozyczen() {
 	/*Schemat zapisu
 	Rejestracja
@@ -68,15 +69,15 @@ void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
 			globalRej = rejestracja;
 			cout << endl;
 			cout << "Podaj Imie nabywcy: ";
-			cin >> imie;
+			cin >> imie; 
 			cout << endl;
 			cout << "Podaj nazwisko nabywcy: ";
 			cout << nazwisko;
 			cout << endl;
-			cout << "Podaj date poczatkowa: ";
+			cout << "Podaj date poczatkowa: format [dd mm rrrr] ";
 			cin >> dataPoczatkowa;
 			cout << endl;
-			cout << "Podaj date koncowa : ";
+			cout << "Podaj date koncowa: format [dd mm rrrr] ";
 			cin >> dataKoncowa;
 			cout << endl;
 
@@ -88,7 +89,16 @@ void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
 		}
 		file.close();
 	}
-	
+	//dopisanie wypozyczenia do pojazdu
+	string directory = ".\\BazaDanych\\Pojazdy\\";
+	string nazwaPliku = directory.insert(directory.size(), rejestracja);
+	fstream pojazdyFile;
+	pojazdyFile.open(nazwaPliku, std::ios::out | std::ios::app)
+		if (pojazdyFile.good()) {
+			pojazdyFile << dataPoczatkowa;
+			pojazdyFile << dataKoncowa;
+		}
+	pojazdyFile.close();
 	//dopisywanie do pliku Autka aktualnego wypozyczenia
 	//tworzy sie wowczas w pliku autka
 	// historua wypozyczen

@@ -399,3 +399,93 @@ void ZarzadzanieBazaPojazdow::przegladajBazePojazdow() {
 
 	cout << "------------";
 }
+void ZarzadzanieBazaPojazdow::przegladajBazePojazdow(Data P, Data K) {
+	
+	int d1, m1, r1, d2, m2, r2;
+
+	list<string> vectorRejestracji;
+	fstream plik;
+	string tempRej;
+	plik.open(plikZRejestracjami, ios::in);
+	if (plik.good()) {
+		while (!plik.eof()) {
+			plik >> tempRej;
+
+			vectorRejestracji.push_back(tempRej);
+		}
+	}
+
+	string directory = ".\\BazaDanych\\Pojazdy\\";
+	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje\\";
+	string nazwaPliku;
+	string nazwaWypozyczenia;
+	string daneWypozyczenia;
+	string rejestracja;
+	string marka;
+	string model;
+	string klasa;
+	string moc;
+	string pojemnoscB;
+	string przebieg;
+	string pojemnoscS;
+	string drzwi;
+
+	fstream f;
+	fstream wypozStream;
+
+	for (std::list<std::string>::const_iterator i = vectorRejestracji.begin(); i != vectorRejestracji.end(); ++i) {
+
+		nazwaPliku = directory.append(*i);
+		nazwaWypozyczenia = wyp.append(*i);
+		f.open(nazwaPliku, ios::in);
+		if (f.good()) {
+			while (!f.eof()) {
+				rejestracja = *i;
+				f >> marka;
+				f >> model;
+				f >> klasa;
+				f >> moc;
+				f >> pojemnoscB;
+				f >> przebieg;
+				f >> pojemnoscS;
+				f >> drzwi;
+				while (f.eof()) {
+					//format daty [dd mm rrrr]
+					//bool porownanieZakresu(Data p1, Data k1, Data p2, Data k2) {
+					//zwraca true jesli przedzialy czasowe ze soba nie koliduja
+					//p1 k1 - z pliku, p2 k2 - z argumentow
+					f >> d1 >> m1 >> r1;
+					f >> d2 >> m2 >> r2;
+					Data p1(d1, m1, r1);
+					Data p2(d2, m2, r2);
+					bool czyKoliduje = porownanieZakresu(p1, p2, P, K);
+					if (czyKoliduje == true) {
+						cout << "\n-------------------\n";
+						cout << "Pojazd o rejestracji: " << rejestracja << endl;
+						cout << "Marka: " << marka << endl;
+						cout << "Model: " << model << endl;
+						cout << "Klasa: " << klasa << endl;
+						cout << "Moc: " << moc << endl;
+						cout << "Pojemnosc bagaznika: " << pojemnoscB << endl;
+						cout << "Pojemnosc silnika: " << pojemnoscS << endl;
+						cout << "Przebieg: " << przebieg << endl;
+						cout << "Liczba drzwi: " << drzwi << endl;
+					}
+				}
+			}
+		}
+		f.close();
+
+		cout << "Historia wypozyczen: " << endl;
+		wypozStream.open(nazwaWypozyczenia, ios::in);
+		if (wypozStream.good()) {
+			while (!wypozStream.eof()) {
+				wypozStream >> daneWypozyczenia;
+				cout << daneWypozyczenia << " \n";
+			}
+		}
+		wypozStream.close();
+	}
+
+	cout << "------------";
+}

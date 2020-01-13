@@ -11,6 +11,7 @@ public:
 	void edytujBazePojazdow();
 	Pojazd *znajdzPojazd(string rejestracja);
 	void przegladajBazePojazdow();
+	void przegladajBazePojazdow(Data P, Data K);
 	void wypiszDanyPojazd(Pojazd * pojazd);
 	
 }
