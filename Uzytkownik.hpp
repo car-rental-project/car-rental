@@ -5,6 +5,7 @@
 #include "DaneKlienta.hpp"
 #include "MenuUzytkownika.hpp"
 #include "DostepDoPojazdow.hpp"
+#include "Wypozyczenie.hpp"
 
 class Uzytkownik{
 private:
@@ -15,7 +16,7 @@ private:
 	friend class MenuUzytkownika;
 	
 	int kwota;
-	int *hisWypozyczen = nullptr;
+	//int *hisWypozyczen = nullptr;
 	std::vector <Wypozyczenie> wypozyczenie;
 
 public:

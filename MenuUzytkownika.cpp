@@ -31,7 +31,7 @@ void MenuUzytkownika::menuUzytkownik(Uzytkownik &u) {
 		u.dostepDoPojazdow.wyswietlBazePojazdow(p, k);
 		std::cout << "ID pojazdu do wypozyczenia: ";
 		std::cin >> id;
-		u.wypozyczenie.push_back(new Wypozyczenie);
+		//u.wypozyczenie.push_back(new Wypozyczenie);
 		//wypozyczenie auta na bazie jego id czyli nazwy pliku w systemie nie obiektu pojazd bo cos takiego w systemie nie bd istniec
 		//u.wypozyczenie.at(u.wypozyczenie.back()).wypozyczAuto
 		break;
