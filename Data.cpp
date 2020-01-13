@@ -32,3 +32,71 @@ void Data::wyswietlDate() {
 	else
 	std::cout << "rok: " << rok << std::endl;
 }
+
+
+bool porownanieZakresu(Data p1, Data k1, Data p2, Data k2) {
+	//zwraca true jesli przedzialy czasowe ze soba nie koliduja
+	//1
+	if (p1.getRok() < p2.getRok() ) {
+		
+		if(k1.getRok() < p2.getRok()) {
+			return true;
+		}
+		else return false;
+
+	}
+	//2
+	else if (p1.getRok() > p2.getRok()) {
+
+		if (k2.getRok() < p1.getRok()) {
+			return true;
+		}
+
+		else return false;
+		
+	}
+	else if (p1.getRok() == p2.getRok()) {
+		//1
+		if (p1.getMiesiac() < p2.getMiesiac()) {
+
+			if (k1.getMiesiac() < p2.getMiesiac()) {
+				return true;
+			}
+			else return false;
+
+		}
+		//2
+		else if (p1.getMiesiac() > p2.getMiesiac()) {
+
+			if (k2.getMiesiac() < p1.getMiesiac()) {
+				return true;
+			}
+
+			else return false;
+
+		}
+		else if (p1.getMiesiac() == p2.getMiesiac()) {
+			//1
+			if (p1.getDzien() < p2.getDzien()) {
+
+				if (k1.getDzien() < p2.getDzien()) {
+					return true;
+				}
+				else return false;
+
+			}
+			//2
+			else if (p1.getDzien() > p2.getDzien()) {
+
+				if (k2.getDzien() < p1.getDzien()) {
+					return true;
+				}
+
+				else return false;
+
+			}
+		}
+	}
+
+
+}
