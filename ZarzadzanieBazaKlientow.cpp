@@ -328,7 +328,7 @@ void ZarzadzanieBazaKlientow::usunKlienta() {
 	//	if (LOGINY.good()) {
 	bool ok = true;
 	while (ok) {
-		std::cout << "Podaj login" << std::endl;
+		std::cout << "Podaj login: " << std::endl;
 		std::cin >> login;
 
 		directory.insert(directory.size(), login);
