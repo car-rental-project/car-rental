@@ -3,6 +3,7 @@
 #include "Wypozyczenie.hpp"
 
 #include <iostream>
+#include <string>
 
 void MenuUzytkownika::menuUzytkownik(Uzytkownik &u) {
 	unsigned int wybor;

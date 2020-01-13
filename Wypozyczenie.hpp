@@ -14,7 +14,8 @@ private:
 	//Uzytkownik* uzytkownik;
 public:
 	bool wypozyczAuto(Pojazd *pojazd, Uzytkownik* u,Data datak, Data dataP);
-	void zwroc();
+	bool wypozyczAuto(std::string login, Data datak, Data dataP,std::string id);
+	void zwroc(std::string id,std::string login);
 	void wyswietlWarunki();
 	Data getDataKoncowa();
 	Data getDataPoczatkowa();

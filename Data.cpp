@@ -100,3 +100,19 @@ bool porownanieZakresu(Data p1, Data k1, Data p2, Data k2) {
 
 
 }
+
+std::string Data::getDataStr() {
+	std::string tmp,ret;
+	//dodanie dnia
+	sprintf((char*)tmp.c_str(), "%d", this->dzien);
+	std::string str = tmp.c_str();
+	ret.insert(ret.size(), str);
+	//dodanie miesiaca
+	sprintf((char*)tmp.c_str(), "%d", this->miesiac);
+	str = tmp.c_str();
+	ret.insert(ret.size(), str);
+	//dodanie roku
+	sprintf((char*)tmp.c_str(), "%d", this->rok);
+	str = tmp.c_str();
+	ret.insert(ret.size(), str);
+}

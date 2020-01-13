@@ -20,6 +20,7 @@ public:
 	int getDzien() { return dzien; }
 	int getMiesiac() { return miesiac;}
 	int getRok() { return rok; }
+	std::string getDataStr();
 };
 
 bool porownanieZakresu(Data p1, Data k1, Data p2, Data k2);
