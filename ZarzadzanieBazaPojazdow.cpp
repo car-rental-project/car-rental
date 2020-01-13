@@ -10,6 +10,42 @@ using namespace std;
 
 const string plikZRejestracjami;
 
+bool removeLine(std::string fileDirectory, std::string fileName, std::string toDelete) {
+	std::fstream tmp;
+	std::fstream file;
+
+	std::string tmpDirectory;
+	std::string tmpString;
+
+	tmpDirectory = fileDirectory;
+	tmpDirectory.insert(tmpDirectory.size(), "tmp");
+	fileDirectory.insert(fileDirectory.size(), fileName);
+
+	tmp.open(tmpDirectory, std::ios::out);
+	file.open(fileDirectory, std::ios::in);
+	if (tmp.good() && file.good()) {
+		while (file.eof() == 0) {
+			getline(file, tmpString);
+			if (file.eof() == 0) {
+				if (tmpString != toDelete) {
+					tmp << tmpString << std::endl;
+				}
+			}
+			else {
+				if (tmpString != toDelete) {
+					tmp << tmpString;
+				}
+			}
+		}
+		file.close();
+		tmp.close();
+		remove(fileDirectory.c_str());
+		rename(tmpDirectory.c_str(), fileDirectory.c_str());
+		return true;
+	}
+	else return false;
+}
+
 void ZarzadzanieBazaPojazdow::dodajPojazd() {
 	string rejestracja;
 	fstream plik;
@@ -56,6 +92,10 @@ void ZarzadzanieBazaPojazdow::dodajPojazd() {
 			<< pojemnoscS << "\n"
 			<< drzwi << "\n";
 	}
+	else {
+		cout << "Wystapil blad." << endl;
+	}
+
 	plik.close();
 	wszystkiePojazdy.open(plikZRejestracjami, ios::out | ios::app);
 	if (wszystkiePojazdy.good()) {
@@ -88,35 +128,141 @@ void ZarzadzanieBazaPojazdow::wypiszDanyPojazd(Pojazd * pojazd) {
 	cout << "Pojazd o rejestracji [" << pojazd->getRejestracja() << "]" << " dodano" << endl;
 	system("PAUSE");
 }
-void ZarzadzanieBazaPojazdow::usunPojazd(string rejestracja) {
+void ZarzadzanieBazaPojazdow::usunPojazd() {
+	string rejestracja;
 	string directory = ".\\BazaDanych\\Pojazdy\\";
-	string nazwaPliku = directory.append(rejestracja);
-	remove(nazwaPliku.c_str());
-	cout << "Pojazd usunieto" << endl;
-}
-void ZarzadzanieBazaPojazdow::edytujBazePojazdow(string rejestracja, int opcja) {
-	Pojazd *pojazd = this->znajdzPojazd(rejestracja);
-	if (opcja == 0) {
-		string nr;
-		cout << "\nPodaj nowy numer rejestracji : ";
-		cin >> nr;
-		pojazd->setRejestracja(nr);
-	}
-	if (opcja == 1) {
-		int p;
-		cout << "\nPodaj nowa pojemnosc silnika : ";
-		cin >> p;
-		pojazd->setPojemnoscSilnika(p);
-	}
-	if (opcja == 2) {
-		int p;
-		cout << "\nPodaj nowy przebieg : ";
-		cin >> p;
-		pojazd->setPrzebieg(p);
-	}
-	this->usunPojazd(rejestracja);
-	this->dodajPojazd(pojazd);
+	cout << "\nPodaj rejestracje pojazdu do usuniecia: ";
+	cin >> rejestracja;
 
+	string nazwaPliku = directory.append(rejestracja);
+
+	if (!exists(nazwaPliku)) {
+		std::cout << "Taki Pojazd nie istnieje" << std::endl;
+	}
+	else {
+		remove(nazwaPliku.c_str());
+		cout << "Pojazd usunieto." << endl;
+	}
+}
+/*Schemat zapisu
+			f >> marka;
+				f >> model;
+				f >> klasa;
+				f >> moc;
+				f >> pojemnoscB;
+				f >> przebieg;
+				f >> pojemnoscS;
+				f >> drzwi;
+*/
+void ZarzadzanieBazaPojazdow::edytujBazePojazdow() {
+	string marka;
+	string model;
+	string klasa;
+	string moc;
+	string pojemnoscB;
+	string przebieg;
+	string pojemnoscS;
+	string drzwi;
+
+	string markaX;
+	string modelX;
+	string klasaX;
+	string mocX;
+	string pojemnoscBX;
+	string przebiegX;
+	string pojemnoscSX;
+	string drzwiX;
+
+	bool ok = true;
+
+	fstream f;
+	string rej;
+	string directory = ".\\BazaDanych\\Pojazdy\\";
+	string nazwaPliku = directory.insert(directory.size(), rej);
+	cout << "Podaj rejstracje pojazdu do edycji: ";
+	cin >> rej;
+
+	f.open(nazwaPliku, std::ios::out | std::ios::in);
+	if (f.good()) {
+		std::cout << "Jesli nie chcesz zmienic danej wpisz \"x\" " << endl;
+		f >> marka;
+		cout << "Marka: " << marka << endl;
+		std::cin >> markaX;
+		if (markaX != "x") {
+			f << markaX << endl;
+		}
+		else {
+			f << marka << endl;
+		}
+		f >> model;
+		cout << "Model: " << model << endl;
+		std::cin >> modelX;
+		if (modelX != "x") {
+			f << modelX << endl;
+		}
+		else {
+			f << model << endl;
+		}
+		f >> klasa;
+		cout << "Klasa: " << klasa << endl;
+		std::cin >> klasaX;
+		if (klasaX != "x") {
+			f << klasaX << endl;
+		}
+		else {
+			f << klasa << endl;
+		}
+		f >> moc;
+		cout << "Moc: " << moc << endl;
+		std::cin >> mocX;
+		if (mocX != "x") {
+			f << mocX << endl;
+		}
+		else {
+			f << moc << endl;
+		}
+		f >> pojemnoscB;
+		cout << "Pojemnosc bagaznika: " << pojemnoscB << endl;
+		std::cin >> pojemnoscBX;
+		if (pojemnoscBX != "x") {
+			f << pojemnoscBX << endl;
+		}
+		else {
+			f << pojemnoscB << endl;
+		}
+		f >> pojemnoscS;
+		cout << "Pojemnosc silnika: " << pojemnoscS << endl;
+		std::cin >> pojemnoscSX;
+		if (pojemnoscSX != "x") {
+			f << pojemnoscSX << endl;
+		}
+		else {
+			f << pojemnoscS << endl;
+		}
+		f >> przebieg;
+		cout << "Przebieg: " << przebieg << endl;
+		std::cin >> przebiegX;
+		if (przebiegX != "x") {
+			f << przebiegX << endl;
+		}
+		else {
+			f << przebieg << endl;
+		}
+		f >> drzwi;
+		cout << "Liczba drzwi: " << drzwi << endl;
+		std::cin >> drzwiX;
+		if (drzwiX != "x") {
+			f << drzwiX << endl;
+		}
+		else {
+			f << drzwi << endl;
+		}
+	else {
+		std::cout << "Zamiana obecnie niemozliwa" << std::endl;
+	}
+		else std::cout << "Blad otwarcia pliku" << std::endl;
+		f.close();
+	}
 }
 Pojazd* ZarzadzanieBazaPojazdow::znajdzPojazd(string rejestracja) {
 	string ln;

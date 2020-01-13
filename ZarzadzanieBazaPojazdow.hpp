@@ -6,9 +6,9 @@ class ZarzadzanieBazaPojazdow {
 public:
 	void dodajPojazd();
 	void dodajPojazd(Pojazd * pojazd);
-	void usunPojazd(string r);
+	void usunPojazd();
 	//tu juz mamy plik znaleziony
-	void edytujBazePojazdow(string rejestracja,int opcja);
+	void edytujBazePojazdow();
 	Pojazd *znajdzPojazd(string rejestracja);
 	void przegladajBazePojazdow();
 	void wypiszDanyPojazd(Pojazd * pojazd);
