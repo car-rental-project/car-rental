@@ -100,6 +100,15 @@ bool porownanieZakresu(Data p1, Data k1, Data p2, Data k2) {
 
 
 }
+bool czyDatyTeSame(Data p1, Data p2) {
+	if (p1.getDzien() == p2.getDzien()
+		&& p1.getRok() == p2.getRok()
+		&& p1.getMiesiac() == p2.getMiesiac()) {
+		return true;
+	}
+	else
+		return false;
+}
 
 std::string Data::getDataStr() {
 	std::string tmp,ret;

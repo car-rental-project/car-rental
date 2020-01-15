@@ -1,10 +1,14 @@
 #include "ZarzadzanieBazaWypozyczen.hpp"
+#include "Data.hpp"
+
 #include <iostream>
 #include <cstring>
 #include <string>
 #include <cstdio>
 #include <fstream>
 using namespace std;
+
+
 void ZarzadzanieBazaWypozyczen::przegladajBazeWypozyczen() {
 	/*Schemat zapisu
 	Rejestracja
@@ -62,14 +66,14 @@ void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
 	rejestracja.open(wyp, std::ios::app | std::ios:in | std : ios : out);
 	if (rejestracja.good()) {
 		file.open(dir, std::ios::app | std::ios::out | std::ios::ate);
-		if(file.good()){
+		if (file.good()) {
 
 			cout << "Podaj rejestracje: ";
 			cin >> rejestracja;
 			globalRej = rejestracja;
 			cout << endl;
 			cout << "Podaj Imie nabywcy: ";
-			cin >> imie; 
+			cin >> imie;
 			cout << endl;
 			cout << "Podaj nazwisko nabywcy: ";
 			cout << nazwisko;
@@ -114,9 +118,48 @@ void ZarzadzanieBazaWypozyczen::dodajWypozyczenie() {
 	f.close();
 
 }
-void ZarzadzanieBazaWypozyczen::usunWypozyczenie(string fileName) {
+void ZarzadzanieBazaWypozyczen::usunWypozyczenie() {
+
+	string dateStartDay, dateStartMonth, dateStartYear, dateEndDay, dateEndMonth, dateEndYear;
+	string fileName;
+	cout << "Rejestracja zwracanego samochodu: ";
+	cin >> fileName;
+	cout << "\nProsze podaæ daty wypo¿yczenia i zwrotu Pojazdu" << endl;
+	cout << "Data wypozyczenia: format [dd mm rrrr] : ";
+	cin >> dateStartDay >> dateStartMonth >> dateStartYear;
+	cout << "Data oddania pojazdu : ";
+	cin >> dateEndDay >> dateEndMonth >> dateStartYear;
+
+	Data k1(dateStartDay, dateStartMonth, dateStartYear);
+	Data k2(dateEndDay, dateEndMonth, dateEndYear);
+
 	std::string wyp = ".\\BazaDanych\\Wypozyczenia\\Rejestracje\\";
+	string carsDirectory = ".\\BazaDanych\\Pojazdy\\";
 	string path = wyp.append(fileName);
+	string pojazdy = carsDirectory.append(filename);
+	fstream f;
+	int d1, m1, r1, d2, m2, r2;
+	f.open(pojazdy, ios::out | ios::app);
+
+	if (f.good()) {
+		string ln;
+
+		for (int i = 0; i < 8; i++) {
+			getline(f, ln);
+		}
+		while (!f.eof()) {
+			f >> d1 >> m1 >> r1;
+			Data p1(d1, m1, r1);
+			bool isEqual = czyDatyTeSame(p1, k1);
+
+			if (isEqual == true) { f << ""; }
+			f >> d2 >> m2 >> r2;
+			Data p2(d2, m2, r2);
+			bool isEqual2 = czyDatyTeSame(p2, k2);
+			if (isEqual2 == true) { f << ""; }
+		}
+	}
+	f.close();
 
 	if (remove(path) == 0) {
 		cout << "Usuniêto wypozyczenie";
@@ -124,5 +167,8 @@ void ZarzadzanieBazaWypozyczen::usunWypozyczenie(string fileName) {
 	else {
 		cout << "Cos poszlo nie tak. Upewnij sie, ze pojazd nie zostal juz zwrocony" << endl;
 	}
+
+
+
 
 }

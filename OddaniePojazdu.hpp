@@ -3,7 +3,7 @@
 
 class OddaniePojazdu {
 public:
-	void oddajPojazd(string rejestracja);
+	void oddajPojazd();
 							//po rejestracji znajdujemy plik z wypozyczeniem
 };
 

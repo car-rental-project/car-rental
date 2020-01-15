@@ -5,6 +5,6 @@
 class Zarz¹dzanieBazaWypozyczen {
 	void przegladajBazeWypozyczen();
 	void dodajWypozyczenie();
-	void usunWypozyczenie(string fileName);
+	void usunWypozyczenie();
 };
 #endif
