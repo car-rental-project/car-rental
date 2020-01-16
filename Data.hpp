@@ -24,6 +24,5 @@ public:
 };
 
 bool porownanieZakresu(Data p1, Data k1, Data p2, Data k2);
-bool czyDatyTeSame(Data p1, Data p2);
 
 #endif // !DATA

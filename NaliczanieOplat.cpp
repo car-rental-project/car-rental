@@ -6,6 +6,7 @@
 
 void NaliczanieOplat::naliczOplate() {
 
+
 		std::string tmp;
 		std::string login;
 		std::string haslo;

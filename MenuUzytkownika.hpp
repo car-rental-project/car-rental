@@ -3,6 +3,7 @@
 
 
 class MenuUzytkownika {
+public:
 	void menuUzytkownik(Uzytkownik &u);
 };
 #endif // !MENU_HPP

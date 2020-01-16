@@ -10,7 +10,6 @@ public:
 	void dodajKlienta();
 	void usunKlienta();
 	void przegladajWypozyczenia(std::string login);
-	void wypisz pojazdy();
 };
 
 bool removeLine(std::string fileDirectory, std::string fileName, std::string toDelete);
